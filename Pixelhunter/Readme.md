@@ -1,6 +1,6 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
-* Студент: [Bogdan](https://up.htmlacademy.ru/ecmascript/1/user/125753).
+* Студент: [Bogdan_mac](https://up.htmlacademy.ru/ecmascript/1/user/125753).
 * Наставник: [Withot](https://up.htmlacademy.ru/ecmascript/1/user/4839).
 
 ---
