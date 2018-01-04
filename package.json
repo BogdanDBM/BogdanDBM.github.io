@@ -1,0 +1,22 @@
+{
+  "name": "c",
+  "version": "1.0.0",
+  "description": "",
+  "main": "c",
+  "scripts": {
+    "test": "C"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BogdanDBM/BogdanDBM.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BogdanDBM/BogdanDBM.github.io/issues"
+  },
+  "homepage": "https://github.com/BogdanDBM/BogdanDBM.github.io#readme",
+  "dependencies": {
+    "grunt-cli": "^1.2.0"
+  }
+}
