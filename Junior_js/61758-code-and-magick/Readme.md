@@ -1,6 +1,6 @@
 # Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url]
 
-* Студент: [Bogdan Dov](http://up.ha.local/javascript/10/user/61758).
+* Студент: [Bogdan Dovzhuk](http://up.ha.local/javascript/10/user/61758).
 
 ---
 
