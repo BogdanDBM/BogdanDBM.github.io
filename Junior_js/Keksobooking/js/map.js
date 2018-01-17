@@ -1,12 +1,49 @@
 
 // map.js
+// unique - Для не повторяющихся
 'use strict';
 var NUMBER_OF_ADVERTS = 8;
+//var avatarAvailableNumber = [];
+var AvailableNumber = [];
+function getRandom(max, min, unique){
+  max = max;
+  min = min || 0;
 
-function getRandom(value, start){
-  start = start || 0;
-return Math.round(Math.random() * (value -start) + start);
+  if (unique) {
+  return unikal(max, min);
+  } else{
+  return (Math.round(Math.random() * (max -min) + min));
 }
+}
+function unikal(max,min){
+ var temp = AvailableNumber;
+  var randomNymber =  (Math.round(Math.random() * (max -min) + min));
+
+  if (temp.indexOf(randomNymber)<0){
+   AvailableNumber.push(randomNymber);
+  // console.log("arr +" + avatarAvailableNumber);
+   return randomNymber;
+ }
+   return unikal(max,min);
+    }
+
+/*
+for (i=0;i<7;i++){
+  console.log(getRandom(8,1,avatarAvailableNumber));
+}
+*/
+/*
+var availableNumber = [];
+       for (i = 0; i<310;i++){
+       a = Math.round(Math.random() * (8 - 1) + 1);
+         if (availableNumber.indexOf(a) < 0){
+       availableNumber.push(a);
+         }
+       }
+       console.log(availableNumber);
+*/
+
+
 /*
 {
 "author": {
@@ -110,7 +147,10 @@ var mapPins = document.querySelector('.map__pins');
 var mapPinsTemplate = document.querySelector('#advertTemplate').content;
 console.log(mapPinsTemplate);
 
- var number = getRandom(NUMBER_OF_ADVERTS,1);
+var number = getRandom(NUMBER_OF_ADVERTS,1,AvailableNumber);
+//console.log(number);
+//var bl = getRandom(12,1,AvailableNumber);
+//console.log(bl);
  var autorAvatar = 'img/avatars/user' + (number > 9 ? '' : '0') + number + '.png';
 
 for (var i = 0; i < 4; i++) {
@@ -123,17 +163,3 @@ cloneMap.querySelector('.popup__avatar').src = autorAvatar;
 
  mapPins.appendChild(cloneMap);
 }
-/*
-var similartlistElement = document.querySelector('.setup-similar-list');
-var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
-
-for (var i=0; i < 4 ; i++){
-  var wizardElement = similarWizardTemplate.cloneNode(true);
-    wizardElement.querySelector('.setup-similar-label').textContent = namesOfWizzrd();
-     wizardElement.querySelector('.wizard-coat').style.fill = coatColor[arrRandom(coatColor)];
-     wizardElement.querySelector('.wizard-eyes').style.fill = eyesColor[arrRandom(eyesColor)];
-      similartlistElement.appendChild(wizardElement);
-//console.log(similartlistElement);
-}
-
-*/
