@@ -4,6 +4,36 @@
 'use strict';
 var NUMBER_OF_ADVERTS = 8;
 //var avatarAvailableNumber = [];
+
+ var title = ['Большая уютная квартира', 'Маленькая неуютная квартира', 'Огромный прекрасный дворец',
+                    'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик',
+                    'Уютное бунгало далеко от моря', 'Неуютное бунгало по колено в воде'];
+ var address = '{{location.x}}, {{location.y}}'
+var price = {
+  min: 1000,
+  max: 1000000
+}; //число, случайная цена от 1000 до 1 000 000
+var type = ['flat', 'house', 'bungalo'];
+    var typeOffer = {
+        flat : 'Квартира',
+        bungalo : 'Бунгало',
+        house: 'Дом'
+        }
+var rooms = {
+    min: 1,
+    max: 5
+ }
+var totalQuests = {
+  min: 1,
+  max: 10
+}
+
+var checkin = ['12:00', '13:00', '14:00'];
+var checkout = ['12:00', '13:00', '14:00'];
+
+var features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+
+
 var AvailableNumber = [];
 function getRandom(max, min, unique){
   max = max;
@@ -26,23 +56,6 @@ function unikal(max,min){
  }
    return unikal(max,min);
     }
-
-/*
-for (i=0;i<7;i++){
-  console.log(getRandom(8,1,avatarAvailableNumber));
-}
-*/
-/*
-var availableNumber = [];
-       for (i = 0; i<310;i++){
-       a = Math.round(Math.random() * (8 - 1) + 1);
-         if (availableNumber.indexOf(a) < 0){
-       availableNumber.push(a);
-         }
-       }
-       console.log(availableNumber);
-*/
-
 
 /*
 {
@@ -139,27 +152,41 @@ var availableNumber = [];
       };
     }
 */
-var t = document.querySelector('.map');
-//console.log(t);
-t.classList.remove('map--faded');
-
-var mapPins = document.querySelector('.map__pins');
-var mapPinsTemplate = document.querySelector('#advertTemplate').content;
-console.log(mapPinsTemplate);
 
 var number = getRandom(NUMBER_OF_ADVERTS,1,AvailableNumber);
 //console.log(number);
 //var bl = getRandom(12,1,AvailableNumber);
 //console.log(bl);
  var autorAvatar = 'img/avatars/user' + (number > 9 ? '' : '0') + number + '.png';
+//var tt = type[getRandom(2,0)];
+//var tt = (type[getRandom(type.length-1,0)]);
+//console.log(type[getRandom(type.length-1,0)]);
+
+ // var tt = checkin[getRandom(checkin.length-1,0)];
+//console.log(tt);
+var t = document.querySelector('.map');
+//console.log(t);
+
+var mapPins = document.querySelector('.map__pins');
+var mapPinsTemplate = document.querySelector('#advertTemplate').content;
+console.log(mapPinsTemplate);
 
 for (var i = 0; i < 4; i++) {
- var cloneMap =mapPinsTemplate.cloneNode(true);
- // cloneMap.querySelector('.popup__avatar').textContent = 'img/avatars/user04.png';//namesOfWizzrd();
- // advertAvatar.setAttribute('src', advert.author.avatar);
-//cloneMap.querySelector('small').textContent = 'british';
-//cloneMap.querySelector('.popup__avatar').setAttribute('src', newIm);
+ var cloneMap = mapPinsTemplate.cloneNode(true);
 cloneMap.querySelector('.popup__avatar').src = autorAvatar;
+cloneMap.querySelector('.card__title').textContent = title[getRandom(title.length-1,0,AvailableNumber)];
+cloneMap.querySelector('.card__adress').textContent = getRandom(100,0)+'%' + ',' + getRandom(100,0)+'%';
+cloneMap.querySelector('.popup__price').textContent = getRandom(price.max, price.min) + '\u20bd' + '/ночь'; // спецсимвол
+cloneMap.querySelector('.card__type').textContent = typeOffer[(type[getRandom(type.length-1,0)])];
+cloneMap.querySelector('.card__rooms').textContent = getRandom(rooms.max,rooms.min) + ' комнаты для ' + getRandom(totalQuests.max,totalQuests.min);
+cloneMap.querySelector('.card_checkin').textContent = 'Заезд после ' + checkin[getRandom(checkin.length-1,0)] + ', выезд до ' + checkout[getRandom(checkout.length-1,0)];
+//cloneMap.querySelector('.popup__features').textConten =
 
- mapPins.appendChild(cloneMap);
+
+
+
+mapPins.appendChild(cloneMap);
 }
+
+
+t.classList.remove('map--faded');
