@@ -120,9 +120,12 @@ for(var i=0;i<NUMBER_OF_ADVERTS; i++) {
 ads[i] =  getRandomAdvert()
 }
 
+
+
 map.classList.remove('map--faded');
 
 ////  Добавили іконки
+var iconShow = function(){
 for (var i = 0; i < NUMBER_OF_ADVERTS; i++) {
  //   console.log(ads[i]);
   var mapPin = document.querySelector('template').content.querySelector('.map__pin').cloneNode(true);
@@ -133,10 +136,12 @@ for (var i = 0; i < NUMBER_OF_ADVERTS; i++) {
   fragment.appendChild(mapPin);
 }
 mapPins.appendChild(fragment);
-
+}
 ////
 
 var mapCard = document.querySelector('template').content.querySelector('.map__card').cloneNode(true);
+
+var mapCardShow = function(){
 mapCard.querySelector('.card__title').textContent = ads[0].offer.title;
 //console.log(ads[0].offer.location.x);
 mapCard.querySelector('.card__adress').textContent = 'location.x :' + ads[0].location.x + ', ' + 'location.y :' + ads[0].location.y;//ads[0].offer.address;
@@ -151,15 +156,49 @@ mapCard.querySelector('.popup__features').innerHTML = getFeatures(ads[0].offer.f
 mapCard.querySelector('.popup__features + p').textContent = ads[0].offer.description;
 mapCard.querySelector('.popup__avatar').src = ads[0].author.avatar;
 map.appendChild(mapCard);
+}
+// START LESS $
 
 
 
 
 
+map.classList.add('map--faded');
 
+//mapPin.classList.add('map--faded');
 
+var formAct = document.querySelector('.map__filters');
+formAct.classList.add('notice__form--disabled');
+var mapFiltersForm =document.querySelectorAll('.map__filter');
+//console.log(bb.length);
+for (var i=0;i<=mapFiltersForm.length-1;i++){
+  mapFiltersForm[i].setAttribute('disabled', true)
+}
 
+var MainPin = document.querySelector('.map__pin--main');
+MainPin.addEventListener('click',function(){
+  iconShow();
+  mapCardShow();
+  map.classList.remove('map--faded');
+  formAct.classList.remove('notice__form--disabled');
+  for (var i=0;i<=mapFiltersForm.length-1;i++){
+  mapFiltersForm[i].removeAttribute('disabled', true);
+}
+ console.log('Click');
+})
 
+/*
+mapPins.addEventListener('click', function(){
+ map.classList.remove('map--faded');
+ console.log('Click');
+});
+*/
+
+//bb.setAttribute('disabled', true);
+//formAct.setAttribute('disabled', true);
+//var formas = document.querySelector('.notice__header');
+//formas.classList.add('notice__form--disabled');
+//formas.setAttribute('disabled', true);
 
 
 
