@@ -87,7 +87,6 @@ var HEIGHT_IMAGE = -62;
 
 //var number = Math.round(getRandomNumber(1, NUMBER_OF_ADVERTS));
 
-
 function getRandomAdvert() {
   var number = Math.round(getRandomNumber(1, NUMBER_OF_ADVERTS));
       return {
@@ -115,9 +114,11 @@ function getRandomAdvert() {
     }
   };
 }
+
 var ads = {};
 for(var i=0;i<NUMBER_OF_ADVERTS; i++) {
 ads[i] =  getRandomAdvert()
+console.log(ads);
 }
 
 
@@ -132,19 +133,32 @@ for (var i = 0; i < NUMBER_OF_ADVERTS; i++) {
   mapPin.querySelector('img').src = ads[i].author.avatar;
   mapPin.style.left = ads[i].location.x - WIDTH_IMAGE / 2 + 'px';
   mapPin.style.top = ads[i].location.y - HEIGHT_IMAGE + 'px';
+
+mapPin.addEventListener('click',function(evt){
+ //getRandomAdvert();
+ mapPin.classList.add('map__pin--active');
+ console.log(evt)
+ mapCardShow();
+ console.log("ddd");
+})
 //  console.log(mapPin);
   fragment.appendChild(mapPin);
 }
+
+
+
 mapPins.appendChild(fragment);
 }
 ////
 
-var mapCard = document.querySelector('template').content.querySelector('.map__card').cloneNode(true);
+
 
 var mapCardShow = function(){
+var mapCard = document.querySelector('template').content.querySelector('.map__card').cloneNode(true);
 mapCard.querySelector('.card__title').textContent = ads[0].offer.title;
 //console.log(ads[0].offer.location.x);
 mapCard.querySelector('.card__adress').textContent = 'location.x :' + ads[0].location.x + ', ' + 'location.y :' + ads[0].location.y;//ads[0].offer.address;
+  //mapCard.querySelector('.card__adress').textContent = 'location.x :' + evt.screenX;//ads[0].location.x + ', ' + 'location.y :' + ads[0].location.y;//ads[0].offer.address;
 mapCard.querySelector('.popup__price').innerHTML = ads[0].offer.price + '&#x20bd;/ночь';
 mapCard.querySelector('.card__type').textContent = typeOffer[ads[0].offer.type];
 //console.log(typeOffer[ads[0].offer.type]);
@@ -178,7 +192,7 @@ for (var i=0;i<=mapFiltersForm.length-1;i++){
 var MainPin = document.querySelector('.map__pin--main');
 MainPin.addEventListener('click',function(){
   iconShow();
-  mapCardShow();
+  //mapCardShow();
   map.classList.remove('map--faded');
   formAct.classList.remove('notice__form--disabled');
   for (var i=0;i<=mapFiltersForm.length-1;i++){
@@ -186,6 +200,7 @@ MainPin.addEventListener('click',function(){
 }
  console.log('Click');
 })
+
 
 /*
 mapPins.addEventListener('click', function(){
